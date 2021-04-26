@@ -80,8 +80,13 @@ function chat(username, message) {
 			goal.blocks = [];
 			break;
 		case 'list':
-			console.log(bot.inventory);
-			bot.whisper(username, bot.inventory.slots.join(', ')); //This doesn't work & I'm too lazy to fix it.
+			bot.chat('I currently have these items in my inventory:')
+    const totalitems = bot.inventory.itemsRange(bot.inventory.inventoryStart, bot.inventory.inventoryEnd).length
+    for(v = 0; v < totalitems; v++){
+      const listinv =  bot.inventory.items()[v].displayName
+      console.log(listinv)
+      bot.chat(listinv)	    
+    }
 			break;
 		case 'minefor':
 			for (option of tokens[1].split(',')) {
